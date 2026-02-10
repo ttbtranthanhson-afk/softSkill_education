@@ -1,0 +1,2671 @@
+﻿<!DOCTYPE html>
+<html lang="vi">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>SoftSkill Master - Phát Triển Kỹ Năng Mềm Công Sở</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <style>
+        /* CSS Reset & Base Styles */
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+        }
+
+        :root {
+            --primary-color: #2c3e50;
+            --secondary-color: #3498db;
+            --accent-color: #1abc9c;
+            --danger-color: #e74c3c;
+            --warning-color: #f39c12;
+            --success-color: #27ae60;
+            --light-color: #ecf0f1;
+            --dark-color: #34495e;
+            --gray-color: #7f8c8d;
+            --border-radius: 8px;
+            --box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+            --transition: all 0.3s ease;
+        }
+
+        body {
+            background-color: #f5f7fa;
+            color: var(--dark-color);
+            line-height: 1.6;
+        }
+
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 0 20px;
+        }
+
+        /* Header & Navigation */
+        header {
+            background-color: white;
+            box-shadow: var(--box-shadow);
+            position: sticky;
+            top: 0;
+            z-index: 100;
+        }
+
+        .navbar {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 15px 0;
+        }
+
+        .logo {
+            display: flex;
+            align-items: center;
+            gap: 10px;
+            font-size: 1.5rem;
+            font-weight: 700;
+            color: var(--primary-color);
+        }
+
+            .logo i {
+                color: var(--accent-color);
+            }
+
+        .nav-links {
+            display: flex;
+            gap: 25px;
+        }
+
+            .nav-links a {
+                text-decoration: none;
+                color: var(--dark-color);
+                font-weight: 500;
+                padding: 5px 10px;
+                border-radius: var(--border-radius);
+                transition: var(--transition);
+            }
+
+                .nav-links a:hover, .nav-links a.active {
+                    background-color: var(--secondary-color);
+                    color: white;
+                }
+
+        .mobile-menu-btn {
+            display: none;
+            font-size: 1.5rem;
+            cursor: pointer;
+        }
+
+        /* Main Content Area */
+        main {
+            padding: 30px 0;
+            min-height: calc(100vh - 150px);
+        }
+
+        /* Section Common */
+        .page-section {
+            display: none;
+            animation: fadeIn 0.5s ease;
+        }
+
+            .page-section.active {
+                display: block;
+            }
+
+        @keyframes fadeIn {
+            from {
+                opacity: 0;
+                transform: translateY(10px);
+            }
+
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+
+        .section-title {
+            font-size: 2rem;
+            color: var(--primary-color);
+            margin-bottom: 20px;
+            padding-bottom: 10px;
+            border-bottom: 3px solid var(--accent-color);
+        }
+
+        /* Home Page */
+        .hero {
+            text-align: center;
+            padding: 40px 20px;
+            background: linear-gradient(135deg, var(--primary-color), var(--secondary-color));
+            color: white;
+            border-radius: var(--border-radius);
+            margin-bottom: 40px;
+        }
+
+            .hero h1 {
+                font-size: 2.8rem;
+                margin-bottom: 15px;
+            }
+
+            .hero p {
+                font-size: 1.2rem;
+                max-width: 800px;
+                margin: 0 auto 30px;
+            }
+
+        .action-buttons {
+            display: flex;
+            justify-content: center;
+            gap: 20px;
+            flex-wrap: wrap;
+        }
+
+        .btn {
+            padding: 12px 28px;
+            border-radius: var(--border-radius);
+            border: none;
+            font-size: 1rem;
+            font-weight: 600;
+            cursor: pointer;
+            transition: var(--transition);
+            display: inline-flex;
+            align-items: center;
+            justify-content: center;
+            gap: 8px;
+        }
+
+        .btn-primary {
+            background-color: var(--accent-color);
+            color: white;
+        }
+
+            .btn-primary:hover {
+                background-color: #16a085;
+                transform: translateY(-3px);
+                box-shadow: 0 6px 15px rgba(26, 188, 156, 0.3);
+            }
+
+        .btn-secondary {
+            background-color: white;
+            color: var(--primary-color);
+            border: 2px solid var(--primary-color);
+        }
+
+            .btn-secondary:hover {
+                background-color: var(--primary-color);
+                color: white;
+                transform: translateY(-3px);
+            }
+
+        .btn-small {
+            padding: 8px 16px;
+            font-size: 0.9rem;
+        }
+
+        .features {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 25px;
+            margin-top: 40px;
+        }
+
+        .feature-card {
+            background-color: white;
+            border-radius: var(--border-radius);
+            padding: 25px;
+            box-shadow: var(--box-shadow);
+            transition: var(--transition);
+        }
+
+            .feature-card:hover {
+                transform: translateY(-5px);
+                box-shadow: 0 8px 20px rgba(0, 0, 0, 0.15);
+            }
+
+        .feature-icon {
+            font-size: 2.5rem;
+            color: var(--secondary-color);
+            margin-bottom: 15px;
+        }
+
+        .feature-card h3 {
+            font-size: 1.5rem;
+            margin-bottom: 10px;
+            color: var(--primary-color);
+        }
+
+        /* Scenario Selection Page */
+        .filter-section {
+            background-color: white;
+            border-radius: var(--border-radius);
+            padding: 25px;
+            box-shadow: var(--box-shadow);
+            margin-bottom: 30px;
+        }
+
+        .filter-title {
+            font-size: 1.3rem;
+            color: var(--primary-color);
+            margin-bottom: 20px;
+            display: flex;
+            align-items: center;
+            gap: 10px;
+        }
+
+        .filter-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 20px;
+            margin-bottom: 20px;
+        }
+
+        .filter-group {
+            display: flex;
+            flex-direction: column;
+        }
+
+            .filter-group label {
+                margin-bottom: 8px;
+                font-weight: 600;
+                color: var(--dark-color);
+            }
+
+        .filter-select {
+            padding: 10px 15px;
+            border: 2px solid #ddd;
+            border-radius: var(--border-radius);
+            font-size: 1rem;
+            background-color: white;
+            cursor: pointer;
+        }
+
+            .filter-select:focus {
+                outline: none;
+                border-color: var(--secondary-color);
+            }
+
+        .filter-actions {
+            display: flex;
+            justify-content: flex-end;
+            gap: 15px;
+            margin-top: 20px;
+        }
+
+        /* Scenario Cards Grid */
+        .scenarios-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
+            gap: 25px;
+            margin-bottom: 40px;
+        }
+
+        .scenario-card {
+            background-color: white;
+            border-radius: var(--border-radius);
+            overflow: hidden;
+            box-shadow: var(--box-shadow);
+            transition: var(--transition);
+            display: flex;
+            flex-direction: column;
+            height: 100%;
+        }
+
+            .scenario-card:hover {
+                transform: translateY(-5px);
+                box-shadow: 0 10px 25px rgba(0, 0, 0, 0.15);
+            }
+
+        .scenario-card-image {
+            width: 100%;
+            height: 180px;
+            object-fit: cover;
+        }
+
+        .scenario-card-content {
+            padding: 20px;
+            flex-grow: 1;
+            display: flex;
+            flex-direction: column;
+        }
+
+        .scenario-card-title {
+            font-size: 1.3rem;
+            color: var(--primary-color);
+            margin-bottom: 10px;
+            min-height: 60px;
+        }
+
+        .scenario-card-description {
+            color: var(--gray-color);
+            margin-bottom: 20px;
+            flex-grow: 1;
+            font-size: 0.95rem;
+            line-height: 1.5;
+        }
+
+        .scenario-card-meta {
+            display: flex;
+            justify-content: space-between;
+            margin-bottom: 20px;
+        }
+
+        .scenario-difficulty {
+            padding: 4px 12px;
+            border-radius: 20px;
+            font-size: 0.8rem;
+            font-weight: 600;
+        }
+
+        .difficulty-beginner {
+            background-color: #e8f5e9;
+            color: var(--success-color);
+        }
+
+        .difficulty-intermediate {
+            background-color: #fff8e1;
+            color: var(--warning-color);
+        }
+
+        .difficulty-advanced {
+            background-color: #ffebee;
+            color: var(--danger-color);
+        }
+
+        .scenario-skills {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 8px;
+        }
+
+        .skill-badge {
+            padding: 4px 10px;
+            background-color: var(--light-color);
+            border-radius: 12px;
+            font-size: 0.8rem;
+            color: var(--dark-color);
+        }
+
+        .scenario-card-actions {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin-top: auto;
+        }
+
+        .completion-status {
+            display: flex;
+            align-items: center;
+            gap: 5px;
+            font-size: 0.9rem;
+            color: var(--gray-color);
+        }
+
+            .completion-status.completed {
+                color: var(--success-color);
+            }
+
+        /* Pagination */
+        .pagination {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            gap: 15px;
+            margin-top: 30px;
+            margin-bottom: 50px;
+        }
+
+        .page-btn {
+            padding: 8px 16px;
+            background-color: white;
+            border: 1px solid #ddd;
+            border-radius: var(--border-radius);
+            cursor: pointer;
+            transition: var(--transition);
+        }
+
+            .page-btn:hover:not(:disabled) {
+                background-color: var(--secondary-color);
+                color: white;
+            }
+
+            .page-btn:disabled {
+                opacity: 0.5;
+                cursor: not-allowed;
+            }
+
+        .page-numbers {
+            display: flex;
+            gap: 8px;
+        }
+
+        .page-number {
+            padding: 8px 12px;
+            border-radius: 4px;
+            cursor: pointer;
+            transition: var(--transition);
+        }
+
+            .page-number.active {
+                background-color: var(--secondary-color);
+                color: white;
+            }
+
+            .page-number:hover:not(.active) {
+                background-color: var(--light-color);
+            }
+
+        /* Scenario Practice Page */
+        .scenario-container {
+            background-color: white;
+            border-radius: var(--border-radius);
+            padding: 30px;
+            box-shadow: var(--box-shadow);
+            margin-bottom: 30px;
+        }
+
+        .scenario-header {
+            display: flex;
+            justify-content: space-between;
+            align-items: flex-start;
+            margin-bottom: 20px;
+        }
+
+        .scenario-title {
+            font-size: 1.5rem;
+            color: var(--primary-color);
+            margin-bottom: 5px;
+        }
+
+        .scenario-meta {
+            display: flex;
+            gap: 15px;
+            margin-bottom: 20px;
+            flex-wrap: wrap;
+        }
+
+        .scenario-image {
+            width: 100%;
+            height: 300px;
+            object-fit: cover;
+            border-radius: var(--border-radius);
+            margin-bottom: 20px;
+        }
+
+        .scenario-description {
+            font-size: 1.1rem;
+            margin-bottom: 25px;
+            line-height: 1.8;
+        }
+
+        .scenario-tags {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 10px;
+            margin-bottom: 25px;
+        }
+
+        .tag {
+            background-color: var(--light-color);
+            padding: 5px 15px;
+            border-radius: 20px;
+            font-size: 0.9rem;
+            color: var(--dark-color);
+        }
+
+            .tag.communication {
+                background-color: #e8f4fc;
+                color: var(--secondary-color);
+            }
+
+            .tag.teamwork {
+                background-color: #e8f7f3;
+                color: var(--accent-color);
+            }
+
+            .tag.emotional {
+                background-color: #fef5e7;
+                color: var(--warning-color);
+            }
+
+            .tag.conflict {
+                background-color: #fce8e8;
+                color: var(--danger-color);
+            }
+
+            .tag.time-management {
+                background-color: #e8f0fe;
+                color: #5c6bc0;
+            }
+
+            .tag.critical-thinking {
+                background-color: #f3e5f5;
+                color: #8e24aa;
+            }
+
+            .tag.leadership {
+                background-color: #e8f5e9;
+                color: #43a047;
+            }
+
+            .tag.adaptability {
+                background-color: #fff3e0;
+                color: #ef6c00;
+            }
+
+        .response-area {
+            margin-bottom: 25px;
+        }
+
+            .response-area label {
+                display: block;
+                margin-bottom: 10px;
+                font-weight: 600;
+                color: var(--primary-color);
+            }
+
+        textarea {
+            width: 100%;
+            padding: 15px;
+            border: 2px solid #ddd;
+            border-radius: var(--border-radius);
+            font-size: 1rem;
+            resize: vertical;
+            min-height: 150px;
+            transition: var(--transition);
+        }
+
+            textarea:focus {
+                outline: none;
+                border-color: var(--secondary-color);
+            }
+
+        .scenario-controls {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin-top: 20px;
+        }
+
+        .scenario-counter {
+            font-weight: 600;
+            color: var(--gray-color);
+        }
+
+        /* Feedback Section */
+        .feedback-container {
+            background-color: white;
+            border-radius: var(--border-radius);
+            padding: 30px;
+            box-shadow: var(--box-shadow);
+            margin-bottom: 30px;
+            display: none;
+        }
+
+            .feedback-container.show {
+                display: block;
+                animation: fadeIn 0.5s ease;
+            }
+
+        .feedback-header {
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            margin-bottom: 20px;
+            padding-bottom: 15px;
+            border-bottom: 2px solid var(--light-color);
+        }
+
+        .score-display {
+            font-size: 1.5rem;
+            font-weight: 700;
+            color: var(--success-color);
+        }
+
+            .score-display.low {
+                color: var(--danger-color);
+            }
+
+            .score-display.medium {
+                color: var(--warning-color);
+            }
+
+        .feedback-content {
+            margin-bottom: 20px;
+        }
+
+        .feedback-section {
+            margin-bottom: 25px;
+        }
+
+            .feedback-section h4 {
+                color: var(--primary-color);
+                margin-bottom: 10px;
+                display: flex;
+                align-items: center;
+                gap: 10px;
+            }
+
+                .feedback-section h4 i {
+                    color: var(--secondary-color);
+                }
+
+        .improvement-tips ul {
+            padding-left: 20px;
+        }
+
+        .improvement-tips li {
+            margin-bottom: 8px;
+        }
+
+        /* Skill Dashboard */
+        .skills-container {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(280px, 1fr));
+            gap: 20px;
+            margin-bottom: 40px;
+        }
+
+        .skill-card {
+            background-color: white;
+            border-radius: var(--border-radius);
+            padding: 25px;
+            box-shadow: var(--box-shadow);
+            transition: var(--transition);
+        }
+
+            .skill-card:hover {
+                transform: translateY(-5px);
+            }
+
+        .skill-header {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin-bottom: 15px;
+        }
+
+        .skill-name {
+            font-size: 1.3rem;
+            font-weight: 600;
+            color: var(--primary-color);
+        }
+
+        .skill-status {
+            padding: 5px 15px;
+            border-radius: 20px;
+            font-size: 0.9rem;
+            font-weight: 600;
+        }
+
+            .skill-status.weak {
+                background-color: #ffebee;
+                color: var(--danger-color);
+            }
+
+            .skill-status.average {
+                background-color: #fff8e1;
+                color: var(--warning-color);
+            }
+
+            .skill-status.good {
+                background-color: #e8f5e9;
+                color: var(--success-color);
+            }
+
+        .progress-bar {
+            height: 10px;
+            background-color: var(--light-color);
+            border-radius: 5px;
+            margin-bottom: 15px;
+            overflow: hidden;
+        }
+
+        .progress-fill {
+            height: 100%;
+            border-radius: 5px;
+            transition: width 1s ease-in-out;
+        }
+
+            .progress-fill.weak {
+                background-color: var(--danger-color);
+            }
+
+            .progress-fill.average {
+                background-color: var(--warning-color);
+            }
+
+            .progress-fill.good {
+                background-color: var(--success-color);
+            }
+
+        .skill-info {
+            display: flex;
+            justify-content: space-between;
+            font-size: 0.9rem;
+            color: var(--gray-color);
+        }
+
+        .recommendation-panel {
+            background-color: white;
+            border-radius: var(--border-radius);
+            padding: 25px;
+            box-shadow: var(--box-shadow);
+            margin-bottom: 30px;
+        }
+
+        .recommendation-title {
+            font-size: 1.3rem;
+            color: var(--primary-color);
+            margin-bottom: 15px;
+            display: flex;
+            align-items: center;
+            gap: 10px;
+        }
+
+        .recommendation-list {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 15px;
+        }
+
+        .recommendation-item {
+            background-color: #f0f7ff;
+            border-radius: var(--border-radius);
+            padding: 15px;
+            flex: 1;
+            min-width: 200px;
+            border-left: 4px solid var(--secondary-color);
+        }
+
+        .recommendation-skill {
+            font-weight: 600;
+            color: var(--primary-color);
+            margin-bottom: 5px;
+        }
+
+        .recommendation-scenarios {
+            font-size: 0.9rem;
+            color: var(--gray-color);
+        }
+
+        /* Statistics Page */
+        .stats-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 25px;
+            margin-bottom: 40px;
+        }
+
+        .stat-card {
+            background-color: white;
+            border-radius: var(--border-radius);
+            padding: 25px;
+            box-shadow: var(--box-shadow);
+            text-align: center;
+            transition: var(--transition);
+        }
+
+            .stat-card:hover {
+                transform: translateY(-5px);
+            }
+
+        .stat-icon {
+            font-size: 2.5rem;
+            margin-bottom: 15px;
+            color: var(--secondary-color);
+        }
+
+        .stat-value {
+            font-size: 2.2rem;
+            font-weight: 700;
+            color: var(--primary-color);
+            margin-bottom: 5px;
+        }
+
+        .stat-label {
+            color: var(--gray-color);
+            font-size: 1rem;
+        }
+
+        .chart-container {
+            background-color: white;
+            border-radius: var(--border-radius);
+            padding: 30px;
+            box-shadow: var(--box-shadow);
+            margin-bottom: 30px;
+        }
+
+        .chart-title {
+            font-size: 1.5rem;
+            color: var(--primary-color);
+            margin-bottom: 20px;
+        }
+
+        .chart-placeholder {
+            height: 300px;
+            background-color: #f9f9f9;
+            border-radius: var(--border-radius);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: var(--gray-color);
+            font-size: 1.1rem;
+        }
+
+        /* Learning Resources Page */
+        .topics-container {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
+            gap: 25px;
+            margin-bottom: 40px;
+        }
+
+        .topic-card {
+            background-color: white;
+            border-radius: var(--border-radius);
+            overflow: hidden;
+            box-shadow: var(--box-shadow);
+            transition: var(--transition);
+        }
+
+            .topic-card:hover {
+                transform: translateY(-5px);
+            }
+
+        .topic-header {
+            padding: 20px;
+            background-color: var(--primary-color);
+            color: white;
+        }
+
+            .topic-header h3 {
+                font-size: 1.4rem;
+                display: flex;
+                align-items: center;
+                gap: 10px;
+            }
+
+        .topic-content {
+            padding: 20px;
+        }
+
+            .topic-content ul {
+                padding-left: 20px;
+            }
+
+            .topic-content li {
+                margin-bottom: 10px;
+            }
+
+        /* Footer */
+        footer {
+            background-color: var(--primary-color);
+            color: white;
+            padding: 30px 0;
+            text-align: center;
+        }
+
+        .footer-content {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            gap: 15px;
+        }
+
+        .footer-logo {
+            font-size: 1.8rem;
+            font-weight: 700;
+            color: white;
+            display: flex;
+            align-items: center;
+            gap: 10px;
+        }
+
+        .copyright {
+            color: #bdc3c7;
+            font-size: 0.9rem;
+        }
+
+        /* Responsive Design */
+        @media (max-width: 992px) {
+            .hero h1 {
+                font-size: 2.2rem;
+            }
+
+            .action-buttons {
+                flex-direction: column;
+                align-items: center;
+            }
+
+            .btn {
+                width: 100%;
+                max-width: 300px;
+            }
+
+            .scenarios-grid {
+                grid-template-columns: repeat(auto-fill, minmax(280px, 1fr));
+            }
+        }
+
+        @media (max-width: 768px) {
+            .nav-links {
+                display: none;
+                position: absolute;
+                top: 100%;
+                left: 0;
+                right: 0;
+                background-color: white;
+                flex-direction: column;
+                padding: 20px;
+                box-shadow: 0 10px 15px rgba(0, 0, 0, 0.1);
+                border-radius: 0 0 var(--border-radius) var(--border-radius);
+            }
+
+                .nav-links.active {
+                    display: flex;
+                }
+
+            .mobile-menu-btn {
+                display: block;
+            }
+
+            .section-title {
+                font-size: 1.7rem;
+            }
+
+            .hero h1 {
+                font-size: 1.8rem;
+            }
+
+            .scenario-controls {
+                flex-direction: column;
+                gap: 15px;
+                align-items: flex-start;
+            }
+
+            .scenario-header {
+                flex-direction: column;
+                gap: 15px;
+            }
+
+            .scenario-meta {
+                flex-direction: column;
+                gap: 10px;
+            }
+
+            .filter-grid {
+                grid-template-columns: 1fr;
+            }
+
+            .filter-actions {
+                flex-direction: column;
+            }
+
+            .pagination {
+                flex-wrap: wrap;
+            }
+
+            .page-numbers {
+                flex-wrap: wrap;
+                justify-content: center;
+            }
+        }
+    </style>
+</head>
+<body>
+    <!-- Header & Navigation -->
+    <header>
+        <div class="container">
+            <nav class="navbar">
+                <div class="logo">
+                    <i class="fas fa-brain"></i>
+                    <span>SoftSkill Master</span>
+                </div>
+                <div class="nav-links" id="navLinks">
+                    <a href="#" class="nav-link active" data-page="home">Trang Chủ</a>
+                    <a href="#" class="nav-link" data-page="selection">Chọn Bài Tập</a>
+                    <a href="#" class="nav-link" data-page="practice">Luyện Tập</a>
+                    <a href="#" class="nav-link" data-page="dashboard">Kỹ Năng</a>
+                    <a href="#" class="nav-link" data-page="statistics">Thống Kê</a>
+                    <a href="#" class="nav-link" data-page="learning">Kiến Thức</a>
+                </div>
+                <div class="mobile-menu-btn" id="mobileMenuBtn">
+                    <i class="fas fa-bars"></i>
+                </div>
+            </nav>
+        </div>
+    </header>
+
+    <!-- Main Content -->
+    <main class="container">
+        <!-- Home Page -->
+        <section id="home" class="page-section active">
+            <div class="hero">
+                <h1>Phát Triển Kỹ Năng Mềm Công Sở</h1>
+                <p>Nền tảng tương tác giúp bạn rèn luyện và cải thiện các kỹ năng mềm thiết yếu thông qua 30+ tình huống thực tế, nhận phản hồi AI và theo dõi tiến độ cá nhân.</p>
+                <div class="action-buttons">
+                    <button class="btn btn-primary" id="startPracticeBtn">
+                        <i class="fas fa-play-circle"></i> Bắt đầu luyện tập
+                    </button>
+                    <button class="btn btn-secondary" id="selectExerciseBtn">
+                        <i class="fas fa-list-check"></i> Chọn bài tập
+                    </button>
+                    <button class="btn btn-secondary" id="viewKnowledgeBtn">
+                        <i class="fas fa-book"></i> Kiến thức
+                    </button>
+                </div>
+            </div>
+
+            <div class="features">
+                <div class="feature-card">
+                    <div class="feature-icon">
+                        <i class="fas fa-scroll"></i>
+                    </div>
+                    <h3>30+ Tình Huống Thực Tế</h3>
+                    <p>Đa dạng tình huống giả định mô phỏng môi trường công sở, giúp bạn rèn luyện cách xử lý tình huống thực tế.</p>
+                </div>
+                <div class="feature-card">
+                    <div class="feature-icon">
+                        <i class="fas fa-robot"></i>
+                    </div>
+                    <h3>Phân Tích AI Thông Minh</h3>
+                    <p>Nhận phản hồi chi tiết về câu trả lời của bạn, phân tích điểm mạnh, điểm yếu và gợi ý cải thiện.</p>
+                </div>
+                <div class="feature-card">
+                    <div class="feature-icon">
+                        <i class="fas fa-chart-bar"></i>
+                    </div>
+                    <h3>Theo Dõi Tiến Độ Chi Tiết</h3>
+                    <p>Theo dõi sự tiến bộ của bạn qua thời gian, xác định kỹ năng cần cải thiện và lập kế hoạch phát triển.</p>
+                </div>
+            </div>
+        </section>
+
+        <!-- Scenario Selection Page -->
+        <section id="selection" class="page-section">
+            <h2 class="section-title">Chọn Bài Tập Phù Hợp</h2>
+            <p style="margin-bottom: 25px;">Lựa chọn tình huống luyện tập dựa trên kỹ năng, độ khó hoặc chủ đề bạn muốn cải thiện.</p>
+
+            <div class="filter-section">
+                <h3 class="filter-title"><i class="fas fa-filter"></i> Lọc bài tập</h3>
+
+                <div class="filter-grid">
+                    <div class="filter-group">
+                        <label for="skillFilter">Kỹ năng:</label>
+                        <select id="skillFilter" class="filter-select" multiple>
+                            <option value="all" selected>Tất cả kỹ năng</option>
+                            <option value="communication">Giao tiếp</option>
+                            <option value="teamwork">Làm việc nhóm</option>
+                            <option value="emotional">Quản lý cảm xúc</option>
+                            <option value="conflict">Giải quyết xung đột</option>
+                            <option value="time-management">Quản lý thời gian</option>
+                            <option value="critical-thinking">Tư duy phản biện</option>
+                            <option value="leadership">Lãnh đạo</option>
+                            <option value="adaptability">Thích ứng</option>
+                        </select>
+                        <small style="margin-top: 5px; color: var(--gray-color);">Giữ Ctrl để chọn nhiều</small>
+                    </div>
+
+                    <div class="filter-group">
+                        <label for="difficultyFilter">Độ khó:</label>
+                        <select id="difficultyFilter" class="filter-select">
+                            <option value="all">Tất cả độ khó</option>
+                            <option value="beginner">Cơ bản</option>
+                            <option value="intermediate">Trung bình</option>
+                            <option value="advanced">Nâng cao</option>
+                        </select>
+                    </div>
+
+                    <div class="filter-group">
+                        <label for="completionFilter">Trạng thái:</label>
+                        <select id="completionFilter" class="filter-select">
+                            <option value="all">Tất cả</option>
+                            <option value="completed">Đã hoàn thành</option>
+                            <option value="incomplete">Chưa hoàn thành</option>
+                        </select>
+                    </div>
+                </div>
+
+                <div class="filter-actions">
+                    <button class="btn btn-secondary" id="resetFiltersBtn">
+                        <i class="fas fa-undo"></i> Đặt lại bộ lọc
+                    </button>
+                    <button class="btn btn-primary" id="applyFiltersBtn">
+                        <i class="fas fa-check"></i> Áp dụng bộ lọc
+                    </button>
+                </div>
+            </div>
+
+            <div class="recommendation-panel">
+                <h3 class="recommendation-title"><i class="fas fa-lightbulb"></i> Đề xuất cho bạn</h3>
+                <div class="recommendation-list" id="recommendationList">
+                    <!-- Recommendations will be populated by JavaScript -->
+                </div>
+            </div>
+
+            <h3 class="section-title" style="font-size: 1.5rem;">Danh sách bài tập</h3>
+            <div class="scenarios-grid" id="scenariosGrid">
+                <!-- Scenario cards will be generated by JavaScript -->
+            </div>
+
+            <!-- Pagination -->
+            <div class="pagination" id="pagination">
+                <!-- Pagination will be generated by JavaScript -->
+            </div>
+        </section>
+
+        <!-- Scenario Practice Page -->
+        <section id="practice" class="page-section">
+            <div class="scenario-container">
+                <div class="scenario-header">
+                    <div>
+                        <h2 class="scenario-title" id="scenarioTitle">Xử lý đồng nghiệp trễ deadline</h2>
+                        <div class="scenario-meta">
+                            <span class="scenario-difficulty difficulty-intermediate" id="scenarioDifficulty">Trung bình</span>
+                            <div class="scenario-skills" id="scenarioSkillsTags">
+                                <!-- Skill tags will be added here -->
+                            </div>
+                        </div>
+                    </div>
+                    <div>
+                        <button class="btn btn-secondary btn-small" id="backToSelectionBtn">
+                            <i class="fas fa-arrow-left"></i> Chọn bài khác
+                        </button>
+                    </div>
+                </div>
+
+                <img src="https://images.unsplash.com/photo-1552664730-d307ca884978?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=1000&q=80"
+                     alt="Tình huống công sở" class="scenario-image" id="scenarioImage">
+
+                <div class="scenario-description" id="scenarioDescription">
+                    Bạn đang làm việc trong một dự án nhóm quan trọng với deadline gần kề. Một đồng nghiệp trong nhóm liên tục trễ deadline công việc được phân công, ảnh hưởng đến tiến độ chung của cả nhóm. Bạn là người phụ trách nhóm, hãy xử lý tình huống này như thế nào?
+                </div>
+
+                <div class="response-area">
+                    <label for="userResponse">Câu trả lời của bạn:</label>
+                    <textarea id="userResponse" placeholder="Nhập cách xử lý tình huống của bạn tại đây... (Tối thiểu 50 từ)"></textarea>
+                </div>
+
+                <div class="scenario-controls">
+                    <div class="scenario-counter">Bài tập: <span id="scenarioNumber">1</span> của <span id="totalScenariosCount">30</span></div>
+                    <div>
+                        <button class="btn btn-secondary" id="skipScenarioBtn">
+                            <i class="fas fa-forward"></i> Bỏ qua
+                        </button>
+                        <button class="btn btn-primary" id="submitResponseBtn">
+                            <i class="fas fa-paper-plane"></i> Gửi câu trả lời
+                        </button>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Feedback Container -->
+            <div class="feedback-container" id="feedbackContainer">
+                <div class="feedback-header">
+                    <h3>Phản Hồi Từ Hệ Thống</h3>
+                    <div class="score-display" id="scoreDisplay">Điểm: 85/100</div>
+                </div>
+
+                <div class="feedback-content">
+                    <div class="feedback-section">
+                        <h4><i class="fas fa-check-circle"></i> Điểm mạnh</h4>
+                        <p id="strengthsText">Bạn đã xác định đúng vấn đề và đề xuất gặp mặt trực tiếp để trao đổi. Cách tiếp cận này thể hiện sự chuyên nghiệp và tôn trọng đồng nghiệp.</p>
+                    </div>
+
+                    <div class="feedback-section">
+                        <h4><i class="fas fa-exclamation-triangle"></i> Điểm cần cải thiện</h4>
+                        <p id="improvementsText">Bạn chưa đề cập đến việc tìm hiểu nguyên nhân sâu xa dẫn đến việc trễ deadline của đồng nghiệp. Ngoài ra, cần có kế hoạch dự phòng cho các công việc quan trọng.</p>
+                    </div>
+
+                    <div class="feedback-section improvement-tips">
+                        <h4><i class="fas fa-lightbulb"></i> Gợi ý xử lý tốt hơn</h4>
+                        <ul id="suggestionsList">
+                            <li>Gặp riêng đồng nghiệp để tìm hiểu nguyên nhân (có thể do khối lượng công việc quá tải, vấn đề cá nhân, thiếu kỹ năng...)</li>
+                            <li>Đề xuất hỗ trợ hoặc phân bổ lại công việc nếu cần thiết</li>
+                            <li>Thiết lập các mốc kiểm tra tiến độ thường xuyên hơn</li>
+                            <li>Chuẩn bị phương án dự phòng cho các task quan trọng</li>
+                            <li>Đảm bảo ghi nhận đóng góp của đồng nghiệp khi họ hoàn thành công việc</li>
+                        </ul>
+                    </div>
+                </div>
+
+                <div class="scenario-controls">
+                    <button class="btn btn-secondary" id="backToSelectionAfterBtn">
+                        <i class="fas fa-list"></i> Chọn bài khác
+                    </button>
+                    <button class="btn btn-primary" id="nextScenarioBtn">
+                        <i class="fas fa-arrow-right"></i> Bài tiếp theo
+                    </button>
+                </div>
+            </div>
+        </section>
+
+        <!-- Skill Dashboard Page -->
+        <section id="dashboard" class="page-section">
+            <h2 class="section-title">Bảng Kỹ Năng Cần Phát Triển</h2>
+            <p style="margin-bottom: 25px;">Theo dõi tiến độ phát triển các kỹ năng mềm của bạn. Hệ thống đánh giá dựa trên hiệu suất trong các tình huống luyện tập.</p>
+
+            <div class="skills-container" id="skillsContainer">
+                <!-- Skill cards will be generated by JavaScript -->
+            </div>
+
+            <div class="chart-container">
+                <h3 class="chart-title">Tiến Độ Phát Triển Kỹ Năng</h3>
+                <div class="chart-placeholder">
+                    <div>Biểu đồ phần trăm kỹ năng đã cải thiện sẽ hiển thị tại đây</div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Statistics Page -->
+        <section id="statistics" class="page-section">
+            <h2 class="section-title">Thống Kê Tiến Độ Học Tập</h2>
+
+            <div class="stats-grid">
+                <div class="stat-card">
+                    <div class="stat-icon">
+                        <i class="fas fa-calendar-check"></i>
+                    </div>
+                    <div class="stat-value" id="daysLearned">0</div>
+                    <div class="stat-label">Số ngày đã học</div>
+                </div>
+
+                <div class="stat-card">
+                    <div class="stat-icon">
+                        <i class="fas fa-star"></i>
+                    </div>
+                    <div class="stat-value" id="totalPoints">0</div>
+                    <div class="stat-label">Tổng điểm đạt được</div>
+                </div>
+
+                <div class="stat-card">
+                    <div class="stat-icon">
+                        <i class="fas fa-scroll"></i>
+                    </div>
+                    <div class="stat-value" id="completedScenarios">0</div>
+                    <div class="stat-label">Tình huống đã hoàn thành</div>
+                </div>
+
+                <div class="stat-card">
+                    <div class="stat-icon">
+                        <i class="fas fa-trophy"></i>
+                    </div>
+                    <div class="stat-value" id="currentLevel">Beginner</div>
+                    <div class="stat-label">Cấp độ hiện tại</div>
+                </div>
+            </div>
+
+            <div class="chart-container">
+                <h3 class="chart-title">Biểu Đồ Phát Triển Kỹ Năng Theo Thời Gian</h3>
+                <div class="chart-placeholder">
+                    <div>Biểu đồ phát triển kỹ năng theo thời gian sẽ hiển thị tại đây</div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Learning Resources Page -->
+        <section id="learning" class="page-section">
+            <h2 class="section-title">Kiến Thức Kỹ Năng Mềm</h2>
+            <p style="margin-bottom: 30px;">Tổng hợp kiến thức và phương pháp phát triển các kỹ năng mềm thiết yếu trong môi trường công sở.</p>
+
+            <div class="topics-container">
+                <div class="topic-card">
+                    <div class="topic-header">
+                        <h3><i class="fas fa-comments"></i> Giao tiếp hiệu quả</h3>
+                    </div>
+                    <div class="topic-content">
+                        <p><strong>Kỹ năng giao tiếp nơi công sở bao gồm:</strong></p>
+                        <ul>
+                            <li>Lắng nghe chủ động và thấu hiểu</li>
+                            <li>Diễn đạt rõ ràng, mạch lạc</li>
+                            <li>Sử dụng ngôn ngữ cơ thể phù hợp</li>
+                            <li>Phản hồi mang tính xây dựng</li>
+                            <li>Thích ứng phong cách giao tiếp với đối tượng</li>
+                        </ul>
+                    </div>
+                </div>
+
+                <div class="topic-card">
+                    <div class="topic-header">
+                        <h3><i class="fas fa-users"></i> Làm việc nhóm</h3>
+                    </div>
+                    <div class="topic-content">
+                        <p><strong>Để làm việc nhóm hiệu quả:</strong></p>
+                        <ul>
+                            <li>Xác định vai trò và trách nhiệm rõ ràng</li>
+                            <li>Giao tiếp cởi mở và tôn trọng ý kiến</li>
+                            <li>Chia sẻ thông tin và tài nguyên</li>
+                            <li>Giải quyết mâu thuẫn mang tính xây dựng</li>
+                            <li>Công nhận và ghi nhận đóng góp của thành viên</li>
+                        </ul>
+                    </div>
+                </div>
+
+                <div class="topic-card">
+                    <div class="topic-header">
+                        <h3><i class="fas fa-brain"></i> Quản lý cảm xúc</h3>
+                    </div>
+                    <div class="topic-content">
+                        <p><strong>Quản lý cảm xúc và stress:</strong></p>
+                        <ul>
+                            <li>Nhận diện và gọi tên cảm xúc</li>
+                            <li>Kỹ thuật hít thở và thư giãn</li>
+                            <li>Tư duy tích cực và linh hoạt</li>
+                            <li>Quản lý thời gian và ưu tiên công việc</li>
+                            <li>Tìm kiếm hỗ trợ khi cần thiết</li>
+                        </ul>
+                    </div>
+                </div>
+
+                <div class="topic-card">
+                    <div class="topic-header">
+                        <h3><i class="fas fa-handshake"></i> Giải quyết xung đột</h3>
+                    </div>
+                    <div class="topic-content">
+                        <p><strong>Cách xử lý xung đột hiệu quả:</strong></p>
+                        <ul>
+                            <li>Giữ bình tĩnh và lắng nghe trước</li>
+                            <li>Tập trung vào vấn đề, không tấn công cá nhân</li>
+                            <li>Tìm điểm chung và mục tiêu chung</li>
+                            <li>Đề xuất giải pháp đôi bên cùng có lợi</li>
+                            <li>Chấp nhận thỏa hiệp khi cần thiết</li>
+                        </ul>
+                    </div>
+                </div>
+
+                <div class="topic-card">
+                    <div class="topic-header">
+                        <h3><i class="fas fa-clock"></i> Quản lý thời gian</h3>
+                    </div>
+                    <div class="topic-content">
+                        <p><strong>Kỹ thuật quản lý thời gian hiệu quả:</strong></p>
+                        <ul>
+                            <li>Phương pháp Eisenhower (ưu tiên công việc)</li>
+                            <li>Kỹ thuật Pomodoro (làm việc theo khung thời gian)</li>
+                            <li>Phân chia công việc lớn thành các task nhỏ</li>
+                            <li>Loại bỏ phiền nhiễu và tập trung</li>
+                            <li>Đánh giá và điều chỉnh kế hoạch thường xuyên</li>
+                        </ul>
+                    </div>
+                </div>
+
+                <div class="topic-card">
+                    <div class="topic-header">
+                        <h3><i class="fas fa-bullseye"></i> Tư duy phản biện</h3>
+                    </div>
+                    <div class="topic-content">
+                        <p><strong>Phát triển tư duy phản biện:</strong></p>
+                        <ul>
+                            <li>Đặt câu hỏi để làm rõ vấn đề</li>
+                            <li>Phân tích thông tin từ nhiều nguồn</li>
+                            <li>Đánh giá tính hợp lý của lập luận</li>
+                            <li>Xem xét các góc nhìn khác nhau</li>
+                            <li>Ra quyết định dựa trên bằng chứng</li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+        </section>
+    </main>
+
+    <!-- Footer -->
+    <footer>
+        <div class="container">
+            <div class="footer-content">
+                <div class="footer-logo">
+                    <i class="fas fa-brain"></i>
+                    <span>SoftSkill Master</span>
+                </div>
+                <p>Ứng dụng phát triển kỹ năng mềm cho nhân viên công sở với 30+ tình huống thực tế</p>
+                <p class="copyright">© 2023 SoftSkill Master. Tất cả các quyền được bảo lưu.</p>
+            </div>
+        </div>
+    </footer>
+
+    <script>
+        // ====================
+        // STATE MANAGEMENT
+        // ====================
+        const appState = {
+            currentPage: 'home',
+            currentScenarioIndex: 0,
+            selectedScenarioId: null,
+            activeFilters: {
+                skills: ['all'],
+                difficulty: 'all',
+                completion: 'all'
+            },
+            pagination: {
+                currentPage: 1,
+                itemsPerPage: 6,
+                totalPages: 1
+            },
+            userData: {
+                totalPoints: 0,
+                completedScenarios: [],
+                daysLearned: 0,
+                lastActiveDate: null,
+                skillLevels: {
+                    communication: { score: 65, level: 'average' },
+                    teamwork: { score: 45, level: 'weak' },
+                    emotional: { score: 80, level: 'good' },
+                    conflict: { score: 55, level: 'average' },
+                    timeManagement: { score: 70, level: 'good' },
+                    criticalThinking: { score: 60, level: 'average' },
+                    leadership: { score: 40, level: 'weak' },
+                    adaptability: { score: 50, level: 'average' }
+                }
+            },
+            scenarios: [
+                // Bài tập 1-10 (đã có)
+                {
+                    id: 1,
+                    title: "Xử lý đồng nghiệp trễ deadline",
+                    image: "https://images.unsplash.com/photo-1552664730-d307ca884978?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=1000&q=80",
+                    description: "Bạn đang làm việc trong một dự án nhóm quan trọng với deadline gần kề. Một đồng nghiệp trong nhóm liên tục trễ deadline công việc được phân công, ảnh hưởng đến tiến độ chung của cả nhóm. Bạn là người phụ trách nhóm, hãy xử lý tình huống này như thế nào?",
+                    skills: ["communication", "teamwork", "emotional"],
+                    difficulty: "intermediate"
+                },
+                {
+                    id: 2,
+                    title: "Phản hồi ý kiến với cấp trên",
+                    image: "https://images.unsplash.com/photo-1580894732444-8ecded7900cd?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=1000&q=80",
+                    description: "Trong một cuộc họp, sếp của bạn đưa ra một phương án mà bạn tin rằng sẽ không hiệu quả và có thể gây lãng phí tài nguyên. Bạn nên phản hồi như thế nào để vừa thể hiện quan điểm của mình vừa giữ được sự tôn trọng với cấp trên?",
+                    skills: ["communication", "criticalThinking", "emotional"],
+                    difficulty: "advanced"
+                },
+                {
+                    id: 3,
+                    title: "Quản lý nhiều deadline cùng lúc",
+                    image: "https://images.unsplash.com/photo-1551836026-d5c2c0b4d2a3?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=1000&q=80",
+                    description: "Bạn được giao nhiều nhiệm vụ quan trọng với cùng một deadline. Làm thế nào để bạn sắp xếp thứ tự ưu tiên, quản lý thời gian và đảm bảo hoàn thành tất cả các công việc với chất lượng tốt nhất?",
+                    skills: ["timeManagement", "criticalThinking"],
+                    difficulty: "beginner"
+                },
+                {
+                    id: 4,
+                    title: "Xử lý đồng nghiệp chỉ trích",
+                    image: "https://images.unsplash.com/photo-1553877522-43269d4ea984?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=1000&q=80",
+                    description: "Một đồng nghiệp thường xuyên chỉ trích ý tưởng của bạn trước mặt người khác, khiến bạn cảm thấy bực bội và thiếu tự tin. Bạn sẽ xử lý tình huống này như thế nào để bảo vệ quan điểm của mình mà không làm căng thẳng mối quan hệ đồng nghiệp?",
+                    skills: ["communication", "emotional", "conflict"],
+                    difficulty: "intermediate"
+                },
+                {
+                    id: 5,
+                    title: "Đón nhận phản hồi tiêu cực",
+                    image: "https://images.unsplash.com/photo-1573164713988-8665fc963095?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=1000&q=80",
+                    description: "Bạn nhận được phản hồi từ cấp trên rằng hiệu suất làm việc của bạn chưa đáp ứng được kỳ vọng. Bạn cảm thấy bất ngờ vì nghĩ rằng mình đã làm việc chăm chỉ. Bạn sẽ phản ứng như thế nào và lập kế hoạch cải thiện ra sao?",
+                    skills: ["emotional", "communication", "criticalThinking"],
+                    difficulty: "advanced"
+                },
+                {
+                    id: 6,
+                    title: "Phân công công việc trong nhóm",
+                    image: "https://images.unsplash.com/photo-1573164713714-d95e436ab234?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=1000&q=80",
+                    description: "Bạn là trưởng nhóm được giao một dự án mới. Làm thế nào để bạn phân công công việc cho các thành viên một cách công bằng và hiệu quả, đảm bảo phù hợp với năng lực của từng người?",
+                    skills: ["teamwork", "communication", "criticalThinking"],
+                    difficulty: "intermediate"
+                },
+                {
+                    id: 7,
+                    title: "Thuyết trình trước đám đông",
+                    image: "https://images.unsplash.com/photo-1559136555-9303baea8ebd?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=1000&q=80",
+                    description: "Bạn chuẩn bị thuyết trình một dự án quan trọng trước ban lãnh đạo công ty. Làm thế nào để bạn chuẩn bị và trình bày để gây ấn tượng tốt, truyền đạt thông tin rõ ràng và tự tin trả lời các câu hỏi?",
+                    skills: ["communication", "emotional"],
+                    difficulty: "intermediate"
+                },
+                {
+                    id: 8,
+                    title: "Đàm phán với đối tác",
+                    image: "https://images.unsplash.com/photo-1556742049-0cfed4f6a45d?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=1000&q=80",
+                    description: "Bạn được giao nhiệm vụ đàm phán hợp đồng với một đối tác quan trọng. Làm thế nào để bạn chuẩn bị, đưa ra đề xuất và thương lượng để đạt được kết quả tốt nhất cho công ty?",
+                    skills: ["communication", "criticalThinking", "emotional"],
+                    difficulty: "advanced"
+                },
+                {
+                    id: 9,
+                    title: "Cân bằng công việc và cuộc sống",
+                    image: "https://images.unsplash.com/photo-1576091160399-112ba8d25d1f?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=1000&q=80",
+                    description: "Công việc của bạn ngày càng áp lực, thường xuyên phải làm thêm giờ, ảnh hưởng đến cuộc sống cá nhân và sức khỏe. Làm thế nào để bạn thiết lập ranh giới và tìm được sự cân bằng?",
+                    skills: ["timeManagement", "emotional"],
+                    difficulty: "beginner"
+                },
+                {
+                    id: 10,
+                    title: "Xử lý thông tin mâu thuẫn",
+                    image: "https://images.unsplash.com/photo-1580894732444-8ecded7900cd?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=1000&q=80",
+                    description: "Bạn nhận được hai báo cáo từ hai phòng ban khác nhau với thông tin mâu thuẫn về cùng một vấn đề. Làm thế nào để bạn xác minh thông tin và đưa ra quyết định chính xác?",
+                    skills: ["criticalThinking", "communication"],
+                    difficulty: "intermediate"
+                },
+                // Bài tập 11-20 (thêm mới)
+                {
+                    id: 11,
+                    title: "Dẫn dắt cuộc họp hiệu quả",
+                    image: "https://images.unsplash.com/photo-1559136555-9303baea8ebd?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=1000&q=80",
+                    description: "Bạn được giao nhiệm vụ chủ trì một cuộc họp quan trọng với nhiều phòng ban. Làm thế nào để bạn điều hành cuộc họp hiệu quả, đảm bảo mọi người đều có cơ hội đóng góp và đạt được mục tiêu đề ra?",
+                    skills: ["leadership", "communication", "teamwork"],
+                    difficulty: "intermediate"
+                },
+                {
+                    id: 12,
+                    title: "Ủy quyền công việc cho cấp dưới",
+                    image: "https://images.unsplash.com/photo-1551836026-d5c2c0b4d2a3?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=1000&q=80",
+                    description: "Bạn là quản lý và đang quá tải công việc. Làm thế nào để bạn ủy quyền công việc cho nhân viên cấp dưới một cách hiệu quả, đảm bảo chất lượng công việc và phát triển năng lực của họ?",
+                    skills: ["leadership", "teamwork", "communication"],
+                    difficulty: "advanced"
+                },
+                {
+                    id: 13,
+                    title: "Xây dựng mối quan hệ với đồng nghiệp mới",
+                    image: "https://images.unsplash.com/photo-1580894732444-8ecded7900cd?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=1000&q=80",
+                    description: "Có một đồng nghiệp mới gia nhập nhóm của bạn. Làm thế nào để bạn giúp họ hòa nhập nhanh chóng, xây dựng mối quan hệ tốt và hỗ trợ họ thành công trong công việc?",
+                    skills: ["teamwork", "communication", "emotional"],
+                    difficulty: "beginner"
+                },
+                {
+                    id: 14,
+                    title: "Xử lý thay đổi đột ngột trong dự án",
+                    image: "https://images.unsplash.com/photo-1552664730-d307ca884978?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=1000&q=80",
+                    description: "Dự án bạn đang thực hiện bất ngờ thay đổi về yêu cầu và timeline. Làm thế nào để bạn điều chỉnh kế hoạch, thông báo cho nhóm và đảm bảo dự án vẫn thành công?",
+                    skills: ["adaptability", "communication", "teamwork"],
+                    difficulty: "intermediate"
+                },
+                {
+                    id: 15,
+                    title: "Đưa ra quyết định khó khăn",
+                    image: "https://images.unsplash.com/photo-1553877522-43269d4ea984?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=1000&q=80",
+                    description: "Bạn phải đưa ra quyết định khó khăn giữa hai phương án đều có ưu nhược điểm. Làm thế nào để bạn phân tích, cân nhắc và đưa ra quyết định tốt nhất trong tình huống này?",
+                    skills: ["criticalThinking", "leadership", "emotional"],
+                    difficulty: "advanced"
+                },
+                {
+                    id: 16,
+                    title: "Truyền cảm hứng cho nhóm làm việc",
+                    image: "https://images.unsplash.com/photo-1573164713714-d95e436ab234?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=1000&q=80",
+                    description: "Nhóm của bạn đang trải qua giai đoạn khó khăn, tinh thần làm việc đi xuống. Làm thế nào để bạn truyền cảm hứng, động viên nhóm và khôi phục tinh thần làm việc tích cực?",
+                    skills: ["leadership", "emotional", "communication"],
+                    difficulty: "intermediate"
+                },
+                {
+                    id: 17,
+                    title: "Quản lý xung đột giữa hai nhân viên",
+                    image: "https://images.unsplash.com/photo-1553877522-43269d4ea984?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=1000&q=80",
+                    description: "Hai nhân viên trong nhóm của bạn đang có mâu thuẫn cá nhân ảnh hưởng đến công việc. Làm thế nào để bạn giải quyết xung đột này một cách khéo léo và hiệu quả?",
+                    skills: ["conflict", "leadership", "emotional"],
+                    difficulty: "advanced"
+                },
+                {
+                    id: 18,
+                    title: "Thích ứng với công nghệ mới",
+                    image: "https://images.unsplash.com/photo-1558494949-ef010cbdcc31?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=1000&q=80",
+                    description: "Công ty triển khai hệ thống phần mềm mới mà bạn chưa quen thuộc. Làm thế nào để bạn nhanh chóng học hỏi, thích ứng và hỗ trợ đồng nghiệp cùng làm quen với công nghệ mới?",
+                    skills: ["adaptability", "teamwork", "communication"],
+                    difficulty: "beginner"
+                },
+                {
+                    id: 19,
+                    title: "Đánh giá hiệu quả công việc nhân viên",
+                    image: "https://images.unsplash.com/photo-1573164713988-8665fc963095?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=1000&q=80",
+                    description: "Đến kỳ đánh giá hiệu quả công việc hàng năm. Làm thế nào để bạn chuẩn bị và tiến hành buổi đánh giá với nhân viên một cách công bằng, khách quan và mang tính xây dựng?",
+                    skills: ["leadership", "communication", "criticalThinking"],
+                    difficulty: "intermediate"
+                },
+                {
+                    id: 20,
+                    title: "Ứng phó với khủng hoảng truyền thông",
+                    image: "https://images.unsplash.com/photo-1559136555-9303baea8ebd?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=1000&q=80",
+                    description: "Công ty của bạn đang đối mặt với một khủng hoảng truyền thông. Làm thế nào để bạn xử lý tình huống, bảo vệ hình ảnh công ty và khôi phục niềm tin của khách hàng?",
+                    skills: ["communication", "criticalThinking", "emotional"],
+                    difficulty: "advanced"
+                },
+                // Bài tập 21-30 (thêm mới)
+                {
+                    id: 21,
+                    title: "Phát triển kế hoạch sự nghiệp",
+                    image: "https://images.unsplash.com/photo-1551836026-d5c2c0b4d2a3?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=1000&q=80",
+                    description: "Bạn muốn phát triển sự nghiệp trong 5 năm tới. Làm thế nào để bạn xác định mục tiêu, lập kế hoạch hành động và tìm kiếm cơ hội phát triển phù hợp?",
+                    skills: ["criticalThinking", "communication", "timeManagement"],
+                    difficulty: "intermediate"
+                },
+                {
+                    id: 22,
+                    title: "Xây dựng văn hóa làm việc tích cực",
+                    image: "https://images.unsplash.com/photo-1580894732444-8ecded7900cd?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=1000&q=80",
+                    description: "Bạn được giao nhiệm vụ xây dựng văn hóa làm việc tích cực trong phòng ban. Làm thế nào để bạn thực hiện điều này một cách hiệu quả?",
+                    skills: ["leadership", "teamwork", "communication"],
+                    difficulty: "advanced"
+                },
+                {
+                    id: 23,
+                    title: "Xử lý thất bại trong công việc",
+                    image: "https://images.unsplash.com/photo-1552664730-d307ca884978?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=1000&q=80",
+                    description: "Dự án bạn phụ trách không đạt được kết quả như kỳ vọng. Làm thế nào để bạn xử lý thất bại này, rút ra bài học và tiến lên phía trước?",
+                    skills: ["emotional", "criticalThinking", "adaptability"],
+                    difficulty: "intermediate"
+                },
+                {
+                    id: 24,
+                    title: "Làm việc với đồng nghiệp khác văn hóa",
+                    image: "https://images.unsplash.com/photo-1553877522-43269d4ea984?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=1000&q=80",
+                    description: "Bạn được phân công làm việc với đồng nghiệp đến từ nền văn hóa khác. Làm thế nào để bạn vượt qua rào cản văn hóa và hợp tác hiệu quả?",
+                    skills: ["adaptability", "communication", "teamwork"],
+                    difficulty: "intermediate"
+                },
+                {
+                    id: 25,
+                    title: "Đào tạo nhân viên mới",
+                    image: "https://images.unsplash.com/photo-1573164713714-d95e436ab234?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=1000&q=80",
+                    description: "Bạn được giao nhiệm vụ đào tạo nhân viên mới. Làm thế nào để bạn thiết kế chương trình đào tạo hiệu quả và giúp họ nhanh chóng hòa nhập?",
+                    skills: ["leadership", "communication", "teamwork"],
+                    difficulty: "beginner"
+                },
+                {
+                    id: 26,
+                    title: "Ra quyết định dưới áp lực thời gian",
+                    image: "https://images.unsplash.com/photo-1558494949-ef010cbdcc31?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=1000&q=80",
+                    description: "Bạn phải đưa ra quyết định quan trọng trong thời gian rất ngắn. Làm thế nào để bạn xử lý áp lực và đưa ra quyết định tốt nhất có thể?",
+                    skills: ["criticalThinking", "emotional", "timeManagement"],
+                    difficulty: "advanced"
+                },
+                {
+                    id: 27,
+                    title: "Quản lý dự án từ xa",
+                    image: "https://images.unsplash.com/photo-1573164713988-8665fc963095?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=1000&q=80",
+                    description: "Bạn phải quản lý một dự án với thành viên nhóm làm việc từ xa. Làm thế nào để bạn đảm bảo hiệu quả công việc và gắn kết nhóm?",
+                    skills: ["leadership", "communication", "teamwork"],
+                    difficulty: "intermediate"
+                },
+                {
+                    id: 28,
+                    title: "Đàm phán lương với cấp trên",
+                    image: "https://images.unsplash.com/photo-1559136555-9303baea8ebd?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=1000&q=80",
+                    description: "Bạn muốn đề xuất tăng lương sau một năm làm việc hiệu quả. Làm thế nào để bạn chuẩn bị và thương lượng với cấp trên một cách chuyên nghiệp?",
+                    skills: ["communication", "criticalThinking", "emotional"],
+                    difficulty: "advanced"
+                },
+                {
+                    id: 29,
+                    title: "Xử lý thông tin nhạy cảm",
+                    image: "https://images.unsplash.com/photo-1551836026-d5c2c0b4d2a3?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=1000&q=80",
+                    description: "Bạn vô tình biết được thông tin nhạy cảm về công ty. Làm thế nào để bạn xử lý thông tin này một cách đạo đức và chuyên nghiệp?",
+                    skills: ["criticalThinking", "emotional", "communication"],
+                    difficulty: "intermediate"
+                },
+                {
+                    id: 30,
+                    title: "Tạo động lực cho bản thân",
+                    image: "https://images.unsplash.com/photo-1580894732444-8ecded7900cd?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=1000&q=80",
+                    description: "Bạn đang trải qua giai đoạn mất động lực trong công việc. Làm thế nào để bạn tìm lại cảm hứng và tạo động lực cho bản thân tiếp tục phát triển?",
+                    skills: ["emotional", "adaptability", "timeManagement"],
+                    difficulty: "beginner"
+                }
+            ]
+        };
+
+        // ====================
+        // DOM ELEMENTS
+        // ====================
+        const pageSections = document.querySelectorAll('.page-section');
+        const navLinks = document.querySelectorAll('.nav-link');
+        const mobileMenuBtn = document.getElementById('mobileMenuBtn');
+        const navLinksContainer = document.getElementById('navLinks');
+
+        // Home page elements
+        const startPracticeBtn = document.getElementById('startPracticeBtn');
+        const selectExerciseBtn = document.getElementById('selectExerciseBtn');
+        const viewKnowledgeBtn = document.getElementById('viewKnowledgeBtn');
+
+        // Selection page elements
+        const skillFilter = document.getElementById('skillFilter');
+        const difficultyFilter = document.getElementById('difficultyFilter');
+        const completionFilter = document.getElementById('completionFilter');
+        const resetFiltersBtn = document.getElementById('resetFiltersBtn');
+        const applyFiltersBtn = document.getElementById('applyFiltersBtn');
+        const scenariosGrid = document.getElementById('scenariosGrid');
+        const recommendationList = document.getElementById('recommendationList');
+        const pagination = document.getElementById('pagination');
+
+        // Practice page elements
+        const backToSelectionBtn = document.getElementById('backToSelectionBtn');
+        const backToSelectionAfterBtn = document.getElementById('backToSelectionAfterBtn');
+        const scenarioTitle = document.getElementById('scenarioTitle');
+        const scenarioDifficulty = document.getElementById('scenarioDifficulty');
+        const scenarioSkillsTags = document.getElementById('scenarioSkillsTags');
+        const scenarioImage = document.getElementById('scenarioImage');
+        const scenarioDescription = document.getElementById('scenarioDescription');
+        const userResponse = document.getElementById('userResponse');
+        const scenarioNumber = document.getElementById('scenarioNumber');
+        const totalScenariosCount = document.getElementById('totalScenariosCount');
+        const submitResponseBtn = document.getElementById('submitResponseBtn');
+        const skipScenarioBtn = document.getElementById('skipScenarioBtn');
+        const nextScenarioBtn = document.getElementById('nextScenarioBtn');
+        const feedbackContainer = document.getElementById('feedbackContainer');
+        const scoreDisplay = document.getElementById('scoreDisplay');
+        const strengthsText = document.getElementById('strengthsText');
+        const improvementsText = document.getElementById('improvementsText');
+        const suggestionsList = document.getElementById('suggestionsList');
+
+        // Dashboard page elements
+        const skillsContainer = document.getElementById('skillsContainer');
+
+        // Statistics page elements
+        const daysLearned = document.getElementById('daysLearned');
+        const totalPoints = document.getElementById('totalPoints');
+        const completedScenarios = document.getElementById('completedScenarios');
+        const currentLevel = document.getElementById('currentLevel');
+
+        // ====================
+        // INITIALIZATION
+        // ====================
+        document.addEventListener('DOMContentLoaded', function() {
+            // Load user data from localStorage
+            loadUserData();
+
+            // Initialize UI
+            initializeUI();
+
+            // Set up event listeners
+            setupEventListeners();
+
+            // Update statistics display
+            updateStatistics();
+
+            // Initialize skill dashboard
+            renderSkillDashboard();
+
+            // Initialize selection page
+            updatePagination();
+            renderScenarioCards();
+            updateRecommendations();
+
+            // Set total scenarios count
+            totalScenariosCount.textContent = appState.scenarios.length;
+
+            // If a scenario is selected, load it
+            if (appState.selectedScenarioId) {
+                loadSelectedScenario(appState.selectedScenarioId);
+            } else {
+                // Load first scenario
+                loadScenario(appState.currentScenarioIndex);
+            }
+        });
+
+        // ====================
+        // CORE FUNCTIONS
+        // ====================
+        function initializeUI() {
+            // Check if user has been active today
+            const today = new Date().toDateString();
+            if (appState.userData.lastActiveDate !== today) {
+                appState.userData.lastActiveDate = today;
+                appState.userData.daysLearned++;
+                saveUserData();
+            }
+        }
+
+        function setupEventListeners() {
+            // Navigation
+            navLinks.forEach(link => {
+                link.addEventListener('click', function(e) {
+                    e.preventDefault();
+                    const page = this.getAttribute('data-page');
+                    navigateToPage(page);
+
+                    // Close mobile menu if open
+                    navLinksContainer.classList.remove('active');
+                });
+            });
+
+            // Mobile menu toggle
+            mobileMenuBtn.addEventListener('click', function() {
+                navLinksContainer.classList.toggle('active');
+            });
+
+            // Home page buttons
+            startPracticeBtn.addEventListener('click', () => navigateToPage('practice'));
+            selectExerciseBtn.addEventListener('click', () => navigateToPage('selection'));
+            viewKnowledgeBtn.addEventListener('click', () => navigateToPage('learning'));
+
+            // Selection page buttons
+            resetFiltersBtn.addEventListener('click', resetFilters);
+            applyFiltersBtn.addEventListener('click', applyFilters);
+
+            // Practice page buttons
+            backToSelectionBtn.addEventListener('click', () => navigateToPage('selection'));
+            backToSelectionAfterBtn.addEventListener('click', () => navigateToPage('selection'));
+            submitResponseBtn.addEventListener('click', submitResponse);
+            skipScenarioBtn.addEventListener('click', skipScenario);
+            nextScenarioBtn.addEventListener('click', nextScenario);
+
+            // Filter change events
+            skillFilter.addEventListener('change', updateActiveFilters);
+            difficultyFilter.addEventListener('change', updateActiveFilters);
+            completionFilter.addEventListener('change', updateActiveFilters);
+        }
+
+        function navigateToPage(page) {
+            // Update active nav link
+            navLinks.forEach(link => {
+                if (link.getAttribute('data-page') === page) {
+                    link.classList.add('active');
+                } else {
+                    link.classList.remove('active');
+                }
+            });
+
+            // Hide all pages
+            pageSections.forEach(section => {
+                section.classList.remove('active');
+            });
+
+            // Show selected page
+            document.getElementById(page).classList.add('active');
+
+            // Update app state
+            appState.currentPage = page;
+
+            // Special handling for pages
+            if (page === 'practice') {
+                feedbackContainer.classList.remove('show');
+                userResponse.value = '';
+            } else if (page === 'selection') {
+                updatePagination();
+                renderScenarioCards();
+                updateRecommendations();
+            } else if (page === 'dashboard') {
+                renderSkillDashboard();
+            }
+        }
+
+        // ====================
+        // SELECTION PAGE FUNCTIONS
+        // ====================
+        function updatePagination() {
+            const filteredScenarios = filterScenarios();
+            appState.pagination.totalPages = Math.ceil(filteredScenarios.length / appState.pagination.itemsPerPage);
+        }
+
+        function renderScenarioCards() {
+            // Clear the grid
+            scenariosGrid.innerHTML = '';
+
+            // Get filtered scenarios
+            const filteredScenarios = filterScenarios();
+
+            // Calculate start and end index for current page
+            const startIndex = (appState.pagination.currentPage - 1) * appState.pagination.itemsPerPage;
+            const endIndex = startIndex + appState.pagination.itemsPerPage;
+            const currentPageScenarios = filteredScenarios.slice(startIndex, endIndex);
+
+            // Render each scenario card
+            currentPageScenarios.forEach(scenario => {
+                const scenarioCard = createScenarioCard(scenario);
+                scenariosGrid.appendChild(scenarioCard);
+            });
+
+            // Update counter
+            scenarioNumber.textContent = appState.currentScenarioIndex + 1;
+
+            // Render pagination
+            renderPaginationControls();
+
+            // If no scenarios found, show message
+            if (filteredScenarios.length === 0) {
+                scenariosGrid.innerHTML = `
+                    <div style="grid-column: 1 / -1; text-align: center; padding: 40px; color: var(--gray-color);">
+                        <i class="fas fa-search" style="font-size: 3rem; margin-bottom: 20px;"></i>
+                        <h3>Không tìm thấy bài tập phù hợp</h3>
+                        <p>Hãy thử thay đổi bộ lọc để tìm kiếm bài tập khác.</p>
+                    </div>
+                `;
+            }
+        }
+
+        function createScenarioCard(scenario) {
+            const card = document.createElement('div');
+            card.className = 'scenario-card';
+            card.dataset.id = scenario.id;
+
+            // Check if scenario is completed
+            const isCompleted = appState.userData.completedScenarios.includes(scenario.id);
+
+            // Skill badges
+            const skillBadges = scenario.skills.map(skill => {
+                const skillNames = {
+                    communication: "Giao tiếp",
+                    teamwork: "Làm việc nhóm",
+                    emotional: "Quản lý cảm xúc",
+                    conflict: "Giải quyết xung đột",
+                    timeManagement: "Quản lý thời gian",
+                    criticalThinking: "Tư duy phản biện",
+                    leadership: "Lãnh đạo",
+                    adaptability: "Thích ứng"
+                };
+                return `<span class="skill-badge">${skillNames[skill]}</span>`;
+            }).join('');
+
+            // Difficulty text
+            const difficultyText = {
+                beginner: "Cơ bản",
+                intermediate: "Trung bình",
+                advanced: "Nâng cao"
+            }[scenario.difficulty];
+
+            // Difficulty class
+            const difficultyClass = {
+                beginner: "difficulty-beginner",
+                intermediate: "difficulty-intermediate",
+                advanced: "difficulty-advanced"
+            }[scenario.difficulty];
+
+            card.innerHTML = `
+                <img src="${scenario.image}" alt="${scenario.title}" class="scenario-card-image">
+                <div class="scenario-card-content">
+                    <h3 class="scenario-card-title">${scenario.title}</h3>
+                    <p class="scenario-card-description">${scenario.description.substring(0, 120)}...</p>
+
+                    <div class="scenario-card-meta">
+                        <span class="scenario-difficulty ${difficultyClass}">${difficultyText}</span>
+                        <div class="scenario-skills">${skillBadges}</div>
+                    </div>
+
+                    <div class="scenario-card-actions">
+                        <div class="completion-status ${isCompleted ? 'completed' : ''}">
+                            <i class="fas fa-${isCompleted ? 'check-circle' : 'circle'}"></i>
+                            ${isCompleted ? 'Đã hoàn thành' : 'Chưa hoàn thành'}
+                        </div>
+                        <button class="btn btn-primary btn-small start-scenario-btn" data-id="${scenario.id}">
+                            <i class="fas fa-play"></i> Bắt đầu
+                        </button>
+                    </div>
+                </div>
+            `;
+
+            // Add event listener to the start button
+            card.querySelector('.start-scenario-btn').addEventListener('click', function() {
+                const scenarioId = parseInt(this.dataset.id);
+                startScenario(scenarioId);
+            });
+
+            return card;
+        }
+
+        function renderPaginationControls() {
+            pagination.innerHTML = '';
+
+            if (appState.pagination.totalPages <= 1) return;
+
+            const prevBtn = document.createElement('button');
+            prevBtn.className = 'page-btn';
+            prevBtn.innerHTML = '<i class="fas fa-chevron-left"></i>';
+            prevBtn.disabled = appState.pagination.currentPage === 1;
+            prevBtn.addEventListener('click', () => {
+                if (appState.pagination.currentPage > 1) {
+                    appState.pagination.currentPage--;
+                    renderScenarioCards();
+                }
+            });
+
+            const nextBtn = document.createElement('button');
+            nextBtn.className = 'page-btn';
+            nextBtn.innerHTML = '<i class="fas fa-chevron-right"></i>';
+            nextBtn.disabled = appState.pagination.currentPage === appState.pagination.totalPages;
+            nextBtn.addEventListener('click', () => {
+                if (appState.pagination.currentPage < appState.pagination.totalPages) {
+                    appState.pagination.currentPage++;
+                    renderScenarioCards();
+                }
+            });
+
+            const pageNumbers = document.createElement('div');
+            pageNumbers.className = 'page-numbers';
+
+            for (let i = 1; i <= appState.pagination.totalPages; i++) {
+                const pageBtn = document.createElement('div');
+                pageBtn.className = `page-number ${i === appState.pagination.currentPage ? 'active' : ''}`;
+                pageBtn.textContent = i;
+                pageBtn.addEventListener('click', () => {
+                    appState.pagination.currentPage = i;
+                    renderScenarioCards();
+                });
+                pageNumbers.appendChild(pageBtn);
+            }
+
+            const pageInfo = document.createElement('div');
+            pageInfo.style.color = 'var(--gray-color)';
+            pageInfo.textContent = `Trang ${appState.pagination.currentPage} / ${appState.pagination.totalPages}`;
+
+            pagination.appendChild(prevBtn);
+            pagination.appendChild(pageNumbers);
+            pagination.appendChild(pageInfo);
+            pagination.appendChild(nextBtn);
+        }
+
+        function filterScenarios() {
+            let filtered = [...appState.scenarios];
+
+            // Filter by skills
+            if (appState.activeFilters.skills.length > 0 && !appState.activeFilters.skills.includes('all')) {
+                filtered = filtered.filter(scenario => {
+                    return appState.activeFilters.skills.some(skill => scenario.skills.includes(skill));
+                });
+            }
+
+            // Filter by difficulty
+            if (appState.activeFilters.difficulty !== 'all') {
+                filtered = filtered.filter(scenario => scenario.difficulty === appState.activeFilters.difficulty);
+            }
+
+            // Filter by completion status
+            if (appState.activeFilters.completion !== 'all') {
+                filtered = filtered.filter(scenario => {
+                    const isCompleted = appState.userData.completedScenarios.includes(scenario.id);
+                    return appState.activeFilters.completion === 'completed' ? isCompleted : !isCompleted;
+                });
+            }
+
+            return filtered;
+        }
+
+        function updateActiveFilters() {
+            // Get selected skills
+            const selectedSkills = Array.from(skillFilter.selectedOptions).map(option => option.value);
+            appState.activeFilters.skills = selectedSkills.length > 0 ? selectedSkills : ['all'];
+
+            // Get selected difficulty
+            appState.activeFilters.difficulty = difficultyFilter.value;
+
+            // Get selected completion status
+            appState.activeFilters.completion = completionFilter.value;
+        }
+
+        function applyFilters() {
+            updateActiveFilters();
+            appState.pagination.currentPage = 1;
+            updatePagination();
+            renderScenarioCards();
+        }
+
+        function resetFilters() {
+            // Reset filter selects
+            skillFilter.selectedIndex = 0;
+            difficultyFilter.selectedIndex = 0;
+            completionFilter.selectedIndex = 0;
+
+            // Reset active filters
+            appState.activeFilters = {
+                skills: ['all'],
+                difficulty: 'all',
+                completion: 'all'
+            };
+
+            // Reset pagination
+            appState.pagination.currentPage = 1;
+
+            // Re-render scenarios
+            updatePagination();
+            renderScenarioCards();
+        }
+
+        function updateRecommendations() {
+            // Clear existing recommendations
+            recommendationList.innerHTML = '';
+
+            // Find weak skills
+            const weakSkills = Object.entries(appState.userData.skillLevels)
+                .filter(([skill, data]) => data.level === 'weak')
+                .map(([skill, data]) => skill);
+
+            // If no weak skills, recommend based on least practiced skills
+            if (weakSkills.length === 0) {
+                // Sort skills by score (ascending)
+                const sortedSkills = Object.entries(appState.userData.skillLevels)
+                    .sort((a, b) => a[1].score - b[1].score)
+                    .map(([skill, data]) => skill);
+
+                weakSkills.push(...sortedSkills.slice(0, 2));
+            }
+
+            // Create recommendation for each weak skill
+            weakSkills.forEach(skill => {
+                const skillNames = {
+                    communication: "Giao tiếp",
+                    teamwork: "Làm việc nhóm",
+                    emotional: "Quản lý cảm xúc",
+                    conflict: "Giải quyết xung đột",
+                    timeManagement: "Quản lý thời gian",
+                    criticalThinking: "Tư duy phản biện",
+                    leadership: "Lãnh đạo",
+                    adaptability: "Thích ứng"
+                };
+
+                // Find scenarios that focus on this skill
+                const relatedScenarios = appState.scenarios.filter(scenario =>
+                    scenario.skills.includes(skill) &&
+                    !appState.userData.completedScenarios.includes(scenario.id)
+                );
+
+                if (relatedScenarios.length > 0) {
+                    const recommendation = document.createElement('div');
+                    recommendation.className = 'recommendation-item';
+                    recommendation.innerHTML = `
+                        <div class="recommendation-skill">${skillNames[skill]}</div>
+                        <div class="recommendation-scenarios">${relatedScenarios.length} bài tập phù hợp</div>
+                        <button class="btn btn-primary btn-small" style="margin-top: 10px;" data-skill="${skill}">
+                            <i class="fas fa-play-circle"></i> Luyện tập ngay
+                        </button>
+                    `;
+
+                    // Add event listener
+                    recommendation.querySelector('button').addEventListener('click', function() {
+                        const skill = this.dataset.skill;
+                        filterBySkill(skill);
+                    });
+
+                    recommendationList.appendChild(recommendation);
+                }
+            });
+
+            // If no recommendations, show a message
+            if (recommendationList.children.length === 0) {
+                recommendationList.innerHTML = '<p style="color: var(--gray-color); text-align: center; width: 100%;">Bạn đã hoàn thành tất cả bài tập được đề xuất! Hãy thử các bài tập nâng cao.</p>';
+            }
+        }
+
+        function filterBySkill(skill) {
+            // Set the skill filter
+            skillFilter.value = skill;
+            updateActiveFilters();
+            applyFilters();
+
+            // Navigate to selection page
+            navigateToPage('selection');
+
+            // Scroll to scenarios grid
+            setTimeout(() => {
+                scenariosGrid.scrollIntoView({ behavior: 'smooth' });
+            }, 100);
+        }
+
+        function startScenario(scenarioId) {
+            // Find scenario index
+            const scenarioIndex = appState.scenarios.findIndex(sc => sc.id === scenarioId);
+
+            if (scenarioIndex !== -1) {
+                appState.selectedScenarioId = scenarioId;
+                appState.currentScenarioIndex = scenarioIndex;
+                loadScenario(scenarioIndex);
+                navigateToPage('practice');
+            }
+        }
+
+        function loadSelectedScenario(scenarioId) {
+            const scenarioIndex = appState.scenarios.findIndex(sc => sc.id === scenarioId);
+            if (scenarioIndex !== -1) {
+                loadScenario(scenarioIndex);
+            }
+        }
+
+        // ====================
+        // PRACTICE PAGE FUNCTIONS
+        // ====================
+        function loadScenario(index) {
+            const scenario = appState.scenarios[index];
+
+            // Update scenario UI
+            scenarioTitle.textContent = scenario.title;
+            scenarioImage.src = scenario.image;
+            scenarioDescription.textContent = scenario.description;
+            scenarioNumber.textContent = index + 1;
+
+            // Update difficulty
+            const difficultyText = {
+                beginner: "Cơ bản",
+                intermediate: "Trung bình",
+                advanced: "Nâng cao"
+            }[scenario.difficulty];
+
+            const difficultyClass = {
+                beginner: "difficulty-beginner",
+                intermediate: "difficulty-intermediate",
+                advanced: "difficulty-advanced"
+            }[scenario.difficulty];
+
+            scenarioDifficulty.textContent = difficultyText;
+            scenarioDifficulty.className = `scenario-difficulty ${difficultyClass}`;
+
+            // Update skill tags
+            scenarioSkillsTags.innerHTML = '';
+            const skillNames = {
+                communication: { name: "Giao tiếp", class: "communication" },
+                teamwork: { name: "Làm việc nhóm", class: "teamwork" },
+                emotional: { name: "Quản lý cảm xúc", class: "emotional" },
+                conflict: { name: "Giải quyết xung đột", class: "conflict" },
+                timeManagement: { name: "Quản lý thời gian", class: "time-management" },
+                criticalThinking: { name: "Tư duy phản biện", class: "critical-thinking" },
+                leadership: { name: "Lãnh đạo", class: "leadership" },
+                adaptability: { name: "Thích ứng", class: "adaptability" }
+            };
+
+            scenario.skills.forEach(skill => {
+                const tag = document.createElement('span');
+                tag.className = `tag ${skillNames[skill].class}`;
+                tag.textContent = skillNames[skill].name;
+                scenarioSkillsTags.appendChild(tag);
+            });
+        }
+
+        function skipScenario() {
+            // Find next incomplete scenario
+            let nextIndex = (appState.currentScenarioIndex + 1) % appState.scenarios.length;
+            let attempts = 0;
+
+            while (attempts < appState.scenarios.length) {
+                if (!appState.userData.completedScenarios.includes(appState.scenarios[nextIndex].id)) {
+                    break;
+                }
+                nextIndex = (nextIndex + 1) % appState.scenarios.length;
+                attempts++;
+            }
+
+            appState.currentScenarioIndex = nextIndex;
+            appState.selectedScenarioId = appState.scenarios[nextIndex].id;
+            loadScenario(nextIndex);
+            feedbackContainer.classList.remove('show');
+            userResponse.value = '';
+        }
+
+        // ====================
+        // AI SIMULATION FUNCTIONS
+        // ====================
+        function submitResponse() {
+            const response = userResponse.value.trim();
+
+            if (!response) {
+                alert("Vui lòng nhập câu trả lời trước khi gửi!");
+                return;
+            }
+
+            // Check minimum word count
+            const wordCount = response.split(/\s+/).length;
+            if (wordCount < 50) {
+                alert("Câu trả lời của bạn quá ngắn. Vui lòng nhập ít nhất 50 từ để nhận được đánh giá chi tiết.");
+                return;
+            }
+
+            // Simulate AI analysis based on response length and keywords
+            const score = calculateScore(response);
+            const feedback = generateFeedback(response, score);
+
+            // Update UI with feedback
+            displayFeedback(score, feedback);
+
+            // Update user data
+            updateUserData(score);
+
+            // Update statistics
+            updateStatistics();
+
+            // Update skill dashboard
+            renderSkillDashboard();
+
+            // Update selection page (if we go back)
+            updateRecommendations();
+        }
+
+        function calculateScore(response) {
+            // Simulated AI scoring based on response characteristics
+            let score = 50; // Base score
+
+            // Score based on response length (encourage thoughtful responses)
+            const wordCount = response.split(/\s+/).length;
+            if (wordCount > 150) score += 20;
+            else if (wordCount > 100) score += 15;
+            else if (wordCount > 50) score += 10;
+
+            // Score based on keywords (simulating AI understanding)
+            const positiveKeywords = ['lắng nghe', 'thấu hiểu', 'đề xuất', 'giải pháp', 'hợp tác', 'tôn trọng', 'xây dựng', 'phản hồi', 'khách quan', 'chiến lược', 'linh hoạt', 'sáng tạo', 'đồng cảm', 'khích lệ'];
+            const negativeKeywords = ['đổ lỗi', 'phàn nàn', 'trách móc', 'bực tức', 'từ chối', 'bỏ qua', 'thiên vị', 'áp đặt', 'cứng nhắc', 'tiêu cực'];
+
+            let positiveCount = 0;
+            let negativeCount = 0;
+
+            positiveKeywords.forEach(keyword => {
+                if (response.toLowerCase().includes(keyword)) positiveCount++;
+            });
+
+            negativeKeywords.forEach(keyword => {
+                if (response.toLowerCase().includes(keyword)) negativeCount++;
+            });
+
+            score += positiveCount * 5;
+            score -= negativeCount * 8;
+
+            // Ensure score is between 0 and 100
+            return Math.max(0, Math.min(100, score));
+        }
+
+        function generateFeedback(response, score) {
+            // Get current scenario for context
+            const scenario = appState.scenarios[appState.currentScenarioIndex];
+
+            // Generate feedback based on score
+            let strengths = "";
+            let improvements = "";
+            let suggestions = [];
+
+            if (score >= 80) {
+                strengths = "Câu trả lời của bạn rất toàn diện và thể hiện sự am hiểu về kỹ năng mềm. Bạn đã xác định đúng vấn đề và đề xuất các giải pháp phù hợp, mang tính xây dựng.";
+                improvements = "Có thể cân nhắc thêm các phương án dự phòng và cách đo lường hiệu quả của giải pháp.";
+                suggestions = [
+                    "Tiếp tục phát huy điểm mạnh về phân tích tình huống",
+                    "Xem xét thêm các tác động dài hạn của giải pháp",
+                    "Chuẩn bị sẵn các phương án thay thế"
+                ];
+            } else if (score >= 60) {
+                strengths = "Bạn đã xác định được vấn đề chính và đưa ra hướng giải quyết hợp lý. Cách tiếp cận của bạn cho thấy sự cân nhắc đến cảm xúc của các bên liên quan.";
+                improvements = "Cần làm rõ hơn các bước thực hiện cụ thể và cách thức đo lường kết quả. Ngoài ra, nên đề cập đến việc phòng ngừa tình huống tương tự trong tương lai.";
+                suggestions = [
+                    "Chi tiết hóa các bước thực hiện giải pháp",
+                    "Xác định rõ thời gian và trách nhiệm cho từng bước",
+                    "Đề xuất cách thức theo dõi và đánh giá kết quả",
+                    "Thiết lập cơ chế phản hồi thường xuyên"
+                ];
+            } else {
+                strengths = "Bạn đã nhận diện được một số khía cạnh của vấn đề. Câu trả lời cho thấy bạn quan tâm đến tình huống và mong muốn giải quyết nó.";
+                improvements = "Cần phân tích sâu hơn nguyên nhân gốc rễ của vấn đề. Giải pháp nên cụ thể, khả thi hơn và cân nhắc đến các yếu tố quan hệ giữa các bên liên quan.";
+                suggestions = [
+                    "Phân tích kỹ hơn nguyên nhân sâu xa dẫn đến tình huống",
+                    "Xem xét góc nhìn của tất cả các bên liên quan",
+                    "Đề xuất giải pháp từng bước, có thể đo lường được",
+                    "Tập trung vào giao tiếp mang tính xây dựng",
+                    "Tìm kiếm giải pháp đôi bên cùng có lợi"
+                ];
+            }
+
+            // Add scenario-specific suggestions based on skills
+            if (scenario.skills.includes('teamwork')) {
+                suggestions.push("Đảm bảo phân công công việc phù hợp với năng lực từng thành viên");
+                suggestions.push("Thiết lập các buổi check-in định kỳ để cập nhật tiến độ");
+            }
+
+            if (scenario.skills.includes('emotional')) {
+                suggestions.push("Giữ bình tĩnh và lắng nghe trước khi đưa ra phản hồi");
+                suggestions.push("Sử dụng ngôn ngữ 'tôi' để diễn đạt cảm xúc mà không đổ lỗi");
+            }
+
+            if (scenario.skills.includes('timeManagement')) {
+                suggestions.push("Ưu tiên công việc theo mức độ quan trọng và khẩn cấp");
+                suggestions.push("Chia nhỏ công việc lớn thành các task dễ quản lý");
+            }
+
+            if (scenario.skills.includes('leadership')) {
+                suggestions.push("Làm gương và thể hiện sự nhất quán trong hành động");
+                suggestions.push("Ghi nhận và khen ngợi thành tích của thành viên");
+            }
+
+            if (scenario.skills.includes('adaptability')) {
+                suggestions.push("Duy trì tư duy cởi mở và sẵn sàng học hỏi");
+                suggestions.push("Tập trung vào giải pháp thay vì than phiền về vấn đề");
+            }
+
+            return {
+                strengths,
+                improvements,
+                suggestions
+            };
+        }
+
+        function displayFeedback(score, feedback) {
+            // Update score display
+            scoreDisplay.textContent = `Điểm: ${score}/100`;
+
+            // Update score display color based on score
+            if (score >= 80) {
+                scoreDisplay.className = "score-display";
+            } else if (score >= 60) {
+                scoreDisplay.className = "score-display medium";
+            } else {
+                scoreDisplay.className = "score-display low";
+            }
+
+            // Update feedback texts
+            strengthsText.textContent = feedback.strengths;
+            improvementsText.textContent = feedback.improvements;
+
+            // Update suggestions list
+            suggestionsList.innerHTML = '';
+            feedback.suggestions.forEach(suggestion => {
+                const li = document.createElement('li');
+                li.textContent = suggestion;
+                suggestionsList.appendChild(li);
+            });
+
+            // Show feedback container
+            feedbackContainer.classList.add('show');
+
+            // Scroll to feedback
+            feedbackContainer.scrollIntoView({ behavior: 'smooth' });
+        }
+
+        function nextScenario() {
+            // Hide feedback
+            feedbackContainer.classList.remove('show');
+
+            // Clear response
+            userResponse.value = '';
+
+            // Move to next scenario
+            appState.currentScenarioIndex++;
+
+            // If at the end, loop back to beginning
+            if (appState.currentScenarioIndex >= appState.scenarios.length) {
+                appState.currentScenarioIndex = 0;
+            }
+
+            // Update selected scenario ID
+            appState.selectedScenarioId = appState.scenarios[appState.currentScenarioIndex].id;
+
+            // Load new scenario
+            loadScenario(appState.currentScenarioIndex);
+        }
+
+        // ====================
+        // USER DATA MANAGEMENT
+        // ====================
+        function updateUserData(score) {
+            // Update user data based on score
+            const scenario = appState.scenarios[appState.currentScenarioIndex];
+
+            // Update total points
+            appState.userData.totalPoints += score;
+
+            // Update completed scenarios
+            if (!appState.userData.completedScenarios.includes(scenario.id)) {
+                appState.userData.completedScenarios.push(scenario.id);
+            }
+
+            // Update skill scores based on current scenario
+            scenario.skills.forEach(skill => {
+                if (appState.userData.skillLevels[skill]) {
+                    // Increase skill score based on performance
+                    const increase = score / 20; // 0-5 points per scenario
+                    appState.userData.skillLevels[skill].score = Math.min(100,
+                        appState.userData.skillLevels[skill].score + increase);
+
+                    // Update skill level based on new score
+                    const newScore = appState.userData.skillLevels[skill].score;
+                    if (newScore >= 80) {
+                        appState.userData.skillLevels[skill].level = 'good';
+                    } else if (newScore >= 60) {
+                        appState.userData.skillLevels[skill].level = 'average';
+                    } else {
+                        appState.userData.skillLevels[skill].level = 'weak';
+                    }
+                }
+            });
+
+            // Save to localStorage
+            saveUserData();
+        }
+
+        function saveUserData() {
+            localStorage.setItem('softSkillUserData', JSON.stringify(appState.userData));
+        }
+
+        function loadUserData() {
+            const savedData = localStorage.getItem('softSkillUserData');
+            if (savedData) {
+                appState.userData = JSON.parse(savedData);
+            }
+        }
+
+        // ====================
+        // UI UPDATE FUNCTIONS
+        // ====================
+        function updateStatistics() {
+            // Update statistics display
+            daysLearned.textContent = appState.userData.daysLearned || 0;
+            totalPoints.textContent = appState.userData.totalPoints || 0;
+            completedScenarios.textContent = appState.userData.completedScenarios.length || 0;
+
+            // Determine current level based on average skill score
+            const skillScores = Object.values(appState.userData.skillLevels).map(skill => skill.score);
+            const averageScore = skillScores.reduce((sum, score) => sum + score, 0) / skillScores.length;
+
+            if (averageScore >= 75) {
+                currentLevel.textContent = "Advanced";
+            } else if (averageScore >= 50) {
+                currentLevel.textContent = "Intermediate";
+            } else {
+                currentLevel.textContent = "Beginner";
+            }
+        }
+
+        function renderSkillDashboard() {
+            // Clear existing skill cards
+            skillsContainer.innerHTML = '';
+
+            // Skill names for display
+            const skillDisplayNames = {
+                communication: "Giao tiếp",
+                teamwork: "Làm việc nhóm",
+                emotional: "Quản lý cảm xúc",
+                conflict: "Giải quyết xung đột",
+                timeManagement: "Quản lý thời gian",
+                criticalThinking: "Tư duy phản biện",
+                leadership: "Lãnh đạo",
+                adaptability: "Thích ứng"
+            };
+
+            // Skill icons
+            const skillIcons = {
+                communication: "fas fa-comments",
+                teamwork: "fas fa-users",
+                emotional: "fas fa-brain",
+                conflict: "fas fa-handshake",
+                timeManagement: "fas fa-clock",
+                criticalThinking: "fas fa-bullseye",
+                leadership: "fas fa-crown",
+                adaptability: "fas fa-sync-alt"
+            };
+
+            // Create a card for each skill
+            Object.entries(appState.userData.skillLevels).forEach(([skillKey, skillData]) => {
+                const skillCard = document.createElement('div');
+                skillCard.className = 'skill-card';
+
+                // Determine status text in Vietnamese
+                let statusText = "";
+                let statusClass = "";
+                if (skillData.level === 'good') {
+                    statusText = "Tốt";
+                    statusClass = "good";
+                } else if (skillData.level === 'average') {
+                    statusText = "Trung bình";
+                    statusClass = "average";
+                } else {
+                    statusText = "Yếu";
+                    statusClass = "weak";
+                }
+
+                skillCard.innerHTML = `
+                    <div class="skill-header">
+                        <div class="skill-name">
+                            <i class="${skillIcons[skillKey]}"></i> ${skillDisplayNames[skillKey]}
+                        </div>
+                        <div class="skill-status ${statusClass}">${statusText}</div>
+                    </div>
+                    <div class="progress-bar">
+                        <div class="progress-fill ${skillData.level}" style="width: ${skillData.score}%"></div>
+                    </div>
+                    <div class="skill-info">
+                        <span>Điểm số: ${Math.round(skillData.score)}/100</span>
+                        <span>${getSkillRecommendation(skillData.score)}</span>
+                    </div>
+                `;
+
+                skillsContainer.appendChild(skillCard);
+            });
+        }
+
+        function getSkillRecommendation(score) {
+            if (score >= 80) {
+                return "Duy trì";
+            } else if (score >= 60) {
+                return "Cần cải thiện";
+            } else {
+                return "Cần tập trung";
+            }
+        }
+
+        async function callAIAnalysisAPI(userResponse, scenarioContext) {
+            const mockResponse = {
+                score: 85,
+                strengths: "Câu trả lời thể hiện sự đồng cảm và tư duy giải quyết vấn đề tốt.",
+                improvements: "Cần cụ thể hóa các bước hành động và cách đo lường kết quả.",
+                suggestions: [
+                    "Gặp riêng đồng nghiệp để tìm hiểu nguyên nhân",
+                    "Đề xuất hỗ trợ hoặc điều chỉnh công việc",
+                    "Thiết lập các mốc kiểm tra tiến độ"
+                ]
+            };
+
+             const response = await fetch('', {
+                 method: 'POST',
+                 headers: {
+                     'Content-Type': 'application/json',
+                     'Authorization': 'Bearer YOUR_API_KEY'
+                 },
+                 body: JSON.stringify({
+                     model: 'gpt-3.5-turbo',
+                     messages: [
+                         {role: 'system', content: 'You are a soft skills assessment assistant...'},
+                         {role: 'user', content: `Scenario: ${scenarioContext}\n\nUser response: ${userResponse}\n\nPlease evaluate...`}
+                     ]
+                 })
+             });
+             const data = await response.json();
+             return processAIResponse(data);
+
+            return mockResponse;
+        }
+
+        // Placeholder for adding new scenarios via CMS or admin panel
+        function addNewScenario(scenarioData) {
+            appState.scenarios.push(scenarioData);
+            totalScenariosCount.textContent = appState.scenarios.length;
+            // In a real app, you would also update localStorage or send to a backend
+        }
+
+        // Placeholder for adding new skills
+        function addNewSkill(skillKey, skillName, initialScore = 50) {
+            appState.userData.skillLevels[skillKey] = {
+                score: initialScore,
+                level: initialScore >= 80 ? 'good' : initialScore >= 60 ? 'average' : 'weak'
+            };
+            renderSkillDashboard();
+        }
+    </script>
+</body>
+</html>
